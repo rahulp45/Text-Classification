@@ -11,7 +11,7 @@ Pre-requisites:
     - pip install pyenchant
     - pip install autocorrect
 - Stanford NER
-    - Download jar files from http://nlp.stanford.edu/software/stanford-ner-2014-06-16.zip
+    - Download zip file for NER from https://nlp.stanford.edu/software/CRF-NER.html
     - Make sure to include the path of NER in parseLocation function in Main.py
 
 Input Data Format:
