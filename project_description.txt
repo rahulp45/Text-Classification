@@ -26,13 +26,13 @@ Examples
        
 Modules and Tools:
 -----------------
-		- Pattern matching using regex 
-			- eg: starts at .* \d+:\d+(am|pm)
+	- Pattern matching using regex 
+		• eg: starts at .* \d+:\d+(am|pm)
 	- Tokenization
 	- Spell correction
-		- Explore spell correction in nltk
+		• Explore spell correction in nltk
 	- POS Tagger
-		- temporal tagging and pos
+		• temporal tagging and pos
 	- Syntactic pattern(remove events in past tense)
 	- Synonymy for 5 events
 	- Named entity recognition
@@ -41,7 +41,7 @@ Workflow:
 --------
 	- Perform tokenization, syntactic and then semantic.
 	- List the event iff a date/time is present and is one of the above 5 events.
-		- If present(Optional): location(NER)
+	- If present(Optional): location(NER)
 
 O/P Format:
 -----------
