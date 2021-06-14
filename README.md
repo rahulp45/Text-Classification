@@ -1,5 +1,5 @@
 # **Description** #
-Identify events with date and time from text. Five events – Marriage, Birthday Party, Meeting Anniversary, Seminar will be included in scope.
+Identify events with date and time from text. Five events – Marriage, Birthday Party, Meeting, Anniversary, Seminar will be included in scope.
 
  ## **NLP Modules** ##
 * NLTK – WordNet, Spell correction, Timex, Named Entity Recognition, DateTime, Calender
