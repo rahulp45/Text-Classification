@@ -7,6 +7,10 @@ TRUE_POSITIVE = 0.0
 FALSE_POSITIVE = 0.0
 FALSE_NEGATIVE = 0.0
 TRUE_NEGATIVE = 0.0
+Precision = 0.0
+Recall = 0.0
+F1_Score = 0.0
+Accuracy = 0.0
 
 TIMEX_TAG = "</TIMEX2>"
 TIMEX_TAG_REGEX = r'<TIMEX2 .+>.+?</TIMEX2>'
@@ -90,14 +94,14 @@ def isDateInFuture(event):
 def writeLog(line):
     logging.warn(line)
 
-def computePrecision(obj):
+def computePositives(obj):
     global TRUE_POSITIVE, FALSE_POSITIVE
     if obj.getActual() == "yes":
         TRUE_POSITIVE += 1
     else:
         FALSE_POSITIVE += 1
 
-def computeRecall(featureObjects):
+def computeNegatives(featureObjects):
     global FALSE_NEGATIVE, TRUE_NEGATIVE
     for obj in featureObjects:
         if obj.getActual() == "no" and obj.getPredicted() == "yes":
@@ -110,8 +114,18 @@ def writeOutput(outputFileName, row):
         outputCSV = csv.writer(outputFile)
         outputCSV.writerow(row)
 
+def computeMeasures():
+    global Precision,Recall,F1_Score,Accuracy
+    Precision = TRUE_POSITIVE/(TRUE_POSITIVE+FALSE_POSITIVE)
+    Recall = TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE)
+    F1_Score = (2*Precision*Recall)/(Precision+Recall)
+    Accuracy = (TRUE_POSITIVE+TRUE_NEGATIVE)/(TRUE_POSITIVE+TRUE_NEGATIVE+FALSE_POSITIVE+FALSE_NEGATIVE)
+    
+    
 def printMetrics():
+    computeMeasures()
     print("TP: {}, FP : {}, FN: {}, TN: {}".format(TRUE_POSITIVE, FALSE_POSITIVE, FALSE_NEGATIVE, TRUE_NEGATIVE))
-    print("Precision : {}".format(TRUE_POSITIVE/(TRUE_POSITIVE+FALSE_POSITIVE)))
-    print("Recall : {}".format(TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE)))
-    print("Accuracy : {}".format((TRUE_POSITIVE+TRUE_NEGATIVE)/(TRUE_POSITIVE+TRUE_NEGATIVE+FALSE_POSITIVE+FALSE_NEGATIVE)))
+    print("Precision : {}".format(Precision))
+    print("Recall : {}".format(Recall))
+    print("F1-Score : {}".format(F1_Score))
+    print("Accuracy : {}".format(Accuracy))

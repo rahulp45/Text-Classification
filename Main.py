@@ -166,7 +166,7 @@ if __name__ == '__main__':
             eventObj = setupEvent(obj, eventType)
             obj.setEvent(eventObj)
             if not isEventPast(obj):
-                Utilities.computePrecision(obj)
+                Utilities.computePositives(obj)
                 obj.setPredict("yes")
                 RESULT.append([obj.getEvent().type,
                                  obj.getEvent().date,
@@ -181,7 +181,7 @@ if __name__ == '__main__':
             else:
                 if Utilities.isDateInFuture(obj.getSyntacticFeatures().getTemporalTag()):
                     obj.setPredict("yes")
-                    Utilities.computePrecision(obj)
+                    Utilities.computePositives(obj)
                     RESULT.append([obj.getEvent().type,
                                      obj.getEvent().date,
                                      obj.getEvent().location,
@@ -202,6 +202,6 @@ if __name__ == '__main__':
     for feature in RESULT:
         Utilities.writeOutput(outputFileName, feature)
 
-    Utilities.computeRecall(featureObjects)
+    Utilities.computeNegatives(featureObjects)
 
     Utilities.printMetrics()
