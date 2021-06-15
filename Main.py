@@ -163,7 +163,6 @@ if __name__ == '__main__':
     eventsList = Utilities.filter(taggedLines, TIMEX_TAG)
 
     for obj in eventsList:
-        #print "event: {}".format(event)
         isRequired, eventType = isRequiredEvent(obj, SYNONYMS_FOR_KEYWORDS)
         
         if isRequired:
