@@ -29,41 +29,6 @@ reg3 = re.compile(rel_day, re.IGNORECASE)
 reg4 = re.compile(iso)
 reg5 = re.compile(year)
 
-def tag(text):
-
-    timex_found = []
-
-    found = reg1.findall(text)
-    #print(found)
-    found = [a[0] for a in found if len(a) > 1]
-    #print(found)
-    for timex in found:
-        timex_found.append(timex)
-
-    found = reg2.findall(text)
-    found = [a[0] for a in found if len(a) > 1]
-    for timex in found:
-        timex_found.append(timex)
-
-    found = reg3.findall(text)
-    for timex in found:
-        timex_found.append(timex)
-
-    found = reg4.findall(text)
-    for timex in found:
-        timex_found.append(timex)
-
-    found = reg5.findall(text)
-    for timex in found:
-        timex_found.append(timex)
-    #print(timex_found)
-
-    for timex in timex_found:
-        text = re.sub(timex + '(?!</TIMEX2>)', '<TIMEX2>' + timex + '</TIMEX2>', text)
-    #print(text)
-
-    return text
-
 hashmonths = {
     'january': 1,
     'february': 2,
@@ -137,6 +102,41 @@ def hashnum(number):
         return 100
     if re.match(r'thousand', number, re.IGNORECASE):
       return 1000
+
+def tag(text):
+
+    timex_found = []
+
+    found = reg1.findall(text)
+    #print(found)
+    found = [a[0] for a in found if len(a) > 1]
+    #print(found)
+    for timex in found:
+        timex_found.append(timex)
+
+    found = reg2.findall(text)
+    found = [a[0] for a in found if len(a) > 1]
+    for timex in found:
+        timex_found.append(timex)
+
+    found = reg3.findall(text)
+    for timex in found:
+        timex_found.append(timex)
+
+    found = reg4.findall(text)
+    for timex in found:
+        timex_found.append(timex)
+
+    found = reg5.findall(text)
+    for timex in found:
+        timex_found.append(timex)
+    #print(timex_found)
+
+    for timex in timex_found:
+        text = re.sub(timex + '(?!</TIMEX2>)', '<TIMEX2>' + timex + '</TIMEX2>', text)
+    #print(text)
+
+    return text
 
 def ground(tagged_text, base_date):
 
