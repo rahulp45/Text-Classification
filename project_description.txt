@@ -1,6 +1,6 @@
 Description:
 -----------
-Identify future calendar events with date and time from text. Five events – Marriage, Birthday Party,Meeting Anniversary, Seminar will be included in scope.
+Identify events with date, time and location(if present) from text.Events extracted must be a future event with details of the event.
 
 Proposed Solution and Implementation Details:
 --------------------------------------------
