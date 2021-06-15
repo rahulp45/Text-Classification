@@ -113,5 +113,6 @@ def writeOutput(outputFileName, row):
 
 def printMetrics():
     print("TP: {}, FP : {}, FN: {}, TN: {}".format(TRUE_POSITIVE, FALSE_POSITIVE, FALSE_NEGATIVE, TRUE_NEGATIVE))
-    print("Precision : {}".format(TRUE_POSITIVE/(TRUE_POSITIVE+FALSE_POSITIVE+1.0)))
-    print("Recall : {}".format(TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE+1.0)))
+    print("Precision : {}".format(TRUE_POSITIVE/(TRUE_POSITIVE+FALSE_POSITIVE)))
+    print("Recall : {}".format(TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE)))
+    print("Accuracy : {}".format((TRUE_POSITIVE+TRUE_NEGATIVE)/(TRUE_POSITIVE+TRUE_NEGATIVE+FALSE_POSITIVE+FALSE_NEGATIVE)))
