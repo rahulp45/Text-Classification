@@ -88,7 +88,6 @@ def performTagging(featureObjects):
         taggedLine = ""
         try:
             #print(obj)
-            #print(timex.gmt())
             #print(obj.getLexicalFeatures().getspellCorrection().lower())
             taggedLine = timex.tag(obj.getLexicalFeatures().getSpellCorrection().lower())
             #print(taggedLine)
@@ -126,7 +125,6 @@ def isEventPast(obj):
 
 def parseLocation(obj):
     event = re.sub("<TIMEX2>|</TIMEX2>", "", obj.getLexicalFeatures().getSpellCorrection())
-    #print "event: {}".format(event)
     entities = []
     try:
         nerTagger = StanfordNERTagger( r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\classifiers\english.muc.7class.distsim.crf.ser.gz", r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\stanford-ner.jar")

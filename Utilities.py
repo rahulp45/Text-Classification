@@ -88,7 +88,7 @@ def isDateInFuture(event):
         return False
 
 def writeLog(line):
-    #print line
+    #print(line)
     logging.warn(line)
 
 def computePrecision(obj):
