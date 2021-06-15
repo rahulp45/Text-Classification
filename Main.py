@@ -97,7 +97,6 @@ def performTagging(featureObjects):
             #print(taggedLine)
         except:
             taggedLine = ""
-            print(2)
 
         if not Utilities.isEmpty(taggedLine):
             #print(Utilities.firstMatching(TIMEX_TAG_REGEX, taggedLine))
