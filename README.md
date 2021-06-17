@@ -12,7 +12,7 @@ Pre-requisites:
     - pip install autocorrect
 - Stanford NER
     - Download zip file for NER from https://nlp.stanford.edu/software/CRF-NER.html
-           • Under the Heading Download see NER verion 4.2.0
+        • Under the Heading Download see NER verion 4.2.0
     - Make sure to include the path of NER
 
 Input Data Format:
