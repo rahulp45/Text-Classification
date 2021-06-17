@@ -16,7 +16,7 @@ Pre-requisites:
 
 Input Data Format:
 -------------------------
-- A file whose sentences labeled as "yes" or "no" after ','
+- A file whose sentences labeled as 'yes' or 'no' after every sentence.
 (see sampleInput.csv)
 
 How to run:
