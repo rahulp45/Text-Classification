@@ -113,16 +113,15 @@ def parseLocation(obj):
     event = re.sub("<TIMEX2>|</TIMEX2>", "", obj.getLexicalFeatures().getSpellCorrection())
     entities = []
     try:
-        nerTagger = StanfordNERTagger( r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\classifiers\english.muc.7class.distsim.crf.ser.gz", r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\stanford-ner.jar")
+        nerTagger = StanfordNERTagger( r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\classifiers\english.muc.7class.caseless.distsim.crf.ser.gz", r"C:\Users\rahul\Desktop\stanford-ner-2020-11-17\stanford-ner.jar")
         entities = nerTagger.tag(event.split())
     except:
         print("Unexpected error:", sys.exc_info()[0])
 
     result = ""
     for entity in entities:
-        if entity[1] != 'O':
+        if entity[1] != 'O' and entity[1]!='DATE':
             result +=  " {}".format( entity[0] )
-    
     obj.getSemanticFeatures().setLocation(result)
     return result
 

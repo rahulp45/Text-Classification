@@ -118,10 +118,10 @@ def writeOutput(outputFileName, row):
     
 def computeMeasures():
     global Precision,Recall,F1_Score,Accuracy
-    Precision = TRUE_POSITIVE/(TRUE_POSITIVE + FALSE_POSITIVE)
-    Recall = TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE)
-    F1_Score = (2*Precision*Recall)/(Precision + Recall)
-    Accuracy = (TRUE_POSITIVE + TRUE_NEGATIVE)/(TRUE_POSITIVE + TRUE_NEGATIVE + FALSE_POSITIVE + FALSE_NEGATIVE)
+    Precision = TRUE_POSITIVE/(TRUE_POSITIVE + FALSE_POSITIVE+1)
+    Recall = TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE+1)
+    F1_Score = (2*Precision*Recall)/(Precision + Recall+1)
+    Accuracy = (TRUE_POSITIVE + TRUE_NEGATIVE)/(TRUE_POSITIVE + TRUE_NEGATIVE + FALSE_POSITIVE + FALSE_NEGATIVE+1)
     
     
 def printMetrics():
