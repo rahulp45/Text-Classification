@@ -6,14 +6,14 @@ class Event(object):
         self.date = date
         self.location = location
 
-    def format(self):
-        formattedResult = ""
-        if self.location != "":
-            formattedResult = "Event : {}, when: {}, where: {}".format(self.type, self.date, self.location)
-        else:
-            formattedResult = "Event : {}, when: {}".format(self.type, self.date)
+#     def format(self):
+#         formattedResult = ""
+#         if self.location != "":
+#             formattedResult = "Event : {}, when: {}, where: {}".format(self.type, self.date, self.location)
+#         else:
+#             formattedResult = "Event : {}, when: {}".format(self.type, self.date)
 
-        return formattedResult
+#         return formattedResult
     
     
     

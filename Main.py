@@ -87,19 +87,16 @@ def performTagging(featureObjects):
     for obj in featureObjects:
         taggedLine = ""
         try:
-            #print(obj)
-            #print(obj.getLexicalFeatures().getspellCorrection().lower())
             taggedLine = timex.tag(obj.getLexicalFeatures().getSpellCorrection().lower())
-            #print(taggedLine)
             date=datetime.today()
-            taggedLine = timex.ground(taggedLine, date)
-            #print(taggedLine)
+            taggedLine,timex_val = timex.ground(taggedLine, date)
         except:
             taggedLine = ""
 
         if not Utilities.isEmpty(taggedLine):
             #print(Utilities.firstMatching(TIMEX_TAG_REGEX, taggedLine))
             obj.getSyntacticFeatures().setTemporalTag(Utilities.firstMatching(TIMEX_TAG_REGEX, taggedLine))
+            obj.setDate(timex_val)
             #print(obj.getSyntacticFeatures().getTemporalTag())
             taggedLines.append(obj)
 
@@ -146,6 +143,8 @@ def parseLocation(obj):
 def setupEvent(obj, eventType):
     eventDate = Utilities.parseDate(obj.getSyntacticFeatures().getTemporalTag())
     eventLocation = parseLocation(obj)
+    if(eventLocation==""):
+        eventLocation="none"
     return Event(eventType, eventDate, eventLocation)
 
 if __name__ == '__main__':
@@ -168,10 +167,11 @@ if __name__ == '__main__':
             if not isEventPast(obj):
                 Utilities.computePositives(obj)
                 obj.setPredict("yes")
-                RESULT.append([obj.getEvent().type,
-                                 obj.getEvent().date,
-                                 obj.getEvent().location,
-                                 obj.getText()])
+                RESULT.append(["Event:"+obj.getEvent().type,
+                                "When:"+ obj.getEvent().date,
+                                "Date:"+obj.getDate(),
+                                "Location:"+ obj.getEvent().location,
+                                 "Text:"+ obj.getText()])
 #                                  str(obj.getLexicalFeatures().getTokens()),
 #                                  obj.getLexicalFeatures().getSpellCorrection(),
 #                                  str(obj.getSyntacticFeatures().getPOSTags()),
@@ -182,10 +182,11 @@ if __name__ == '__main__':
                 if Utilities.isDateInFuture(obj.getSyntacticFeatures().getTemporalTag()):
                     obj.setPredict("yes")
                     Utilities.computePositives(obj)
-                    RESULT.append([obj.getEvent().type,
-                                     obj.getEvent().date,
-                                     obj.getEvent().location,
-                                     obj.getText()])
+                    RESULT.append(["Event:"+ obj.getEvent().type,
+                                     "When:"+ obj.getEvent().date,
+                                     "Date:"+ obj.getDate(),
+                                     "Location:"+ obj.getEvent().location,
+                                     "Text:"+ obj.getText()])
 #                                      str(obj.getLexicalFeatures().getTokens()),
 #                                      obj.getLexicalFeatures().getSpellCorrection(),
 #                                      str(obj.getSyntacticFeatures().getPOSTags()),
@@ -198,9 +199,10 @@ if __name__ == '__main__':
             Utilities.writeLog("Event Detected but event type did not match with required events :" + obj.getText())
 
 
-    Utilities.writeOutput(outputFileName, RESULT_HEADER)
+#     Utilities.writeOutput(outputFileName, RESULT_HEADER)
     for feature in RESULT:
         Utilities.writeOutput(outputFileName, feature)
+    Utilities.writeOutput(outputFileName,"\n")
 
     Utilities.computeNegatives(featureObjects)
 

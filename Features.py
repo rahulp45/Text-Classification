@@ -12,6 +12,7 @@ class Features(object):
         self.event = None
         self.actual = actual
         self.predict = "no"
+        self.Date=""
 
     def setPredict(self, predict):
         self.predict = predict
@@ -43,4 +44,9 @@ class Features(object):
     def getSemanticFeatures(self):
         return self.semanticFeatures
     
+    def setDate(self,date):
+        self.Date=date
+    
+    def getDate(self):
+        return self.Date
     

@@ -110,16 +110,18 @@ def computeNegatives(featureObjects):
             TRUE_NEGATIVE += 1
 
 def writeOutput(outputFileName, row):
-    with open(outputFileName, 'a') as outputFile:
-        outputCSV = csv.writer(outputFile)
-        outputCSV.writerow(row)
-
+    outputfile=open(outputFileName, 'a')
+    for details in row:
+        outputfile.write(details)
+        outputfile.write("\n")
+    outputfile.write("\n")
+    
 def computeMeasures():
     global Precision,Recall,F1_Score,Accuracy
-    Precision = TRUE_POSITIVE/(TRUE_POSITIVE+FALSE_POSITIVE)
+    Precision = TRUE_POSITIVE/(TRUE_POSITIVE + FALSE_POSITIVE)
     Recall = TRUE_POSITIVE / (TRUE_POSITIVE + FALSE_NEGATIVE)
-    F1_Score = (2*Precision*Recall)/(Precision+Recall)
-    Accuracy = (TRUE_POSITIVE+TRUE_NEGATIVE)/(TRUE_POSITIVE+TRUE_NEGATIVE+FALSE_POSITIVE+FALSE_NEGATIVE)
+    F1_Score = (2*Precision*Recall)/(Precision + Recall)
+    Accuracy = (TRUE_POSITIVE + TRUE_NEGATIVE)/(TRUE_POSITIVE + TRUE_NEGATIVE + FALSE_POSITIVE + FALSE_NEGATIVE)
     
     
 def printMetrics():
