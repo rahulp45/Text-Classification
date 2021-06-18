@@ -46,13 +46,15 @@ Workflow:
 O/P Format:
 -----------
 Event Format:
-    - EVENT_TYPE YYYY-MM-DD at 07:00 AM/PM [in EVENT_PLACE]
-    - where EVENT_TYPE is of Marriage, Birthday party, Meeting, Anniversary, Seminar
+    - EVENT_TYPE where EVENT_TYPE is of Marriage, Birthday party, Meeting, Anniversary, Seminar
+    - When(relative date of event)
+    - Date(absolute date of an event)
+    - Location(if present)
 
 Files Description:
 -----------------
     - (.py) files are project files
-    - sampleInput.csv and sampleOutput.csv are input and output files
+    - sampleInput.csv and sampleOutput.txt are input and output files
         • Input is taken from online source and also made up sentences.
     - EventDetector.log is a log file which records all the logs in program(if any)
     - Learning and exploring is a doc file which records the summary of overall things explored and learned (challanges and difficulties faced)
