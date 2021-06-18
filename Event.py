@@ -1,9 +1,10 @@
 
 class Event(object):
 
-    def __init__(self, type, date, location):
+    def __init__(self, type, rel_date, abs_date, location):
         self.type = type
-        self.date = date
+        self.rel_date = rel_date
+        self.abs_date = abs_date
         self.location = location
 
 #     def format(self):
