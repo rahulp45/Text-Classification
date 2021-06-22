@@ -6,6 +6,7 @@ import pandas as pd
 from datetime import *; from dateutil.relativedelta import *
 import calendar
 
+# Predefined strings.
 numbers = "(^a(?=\s)|one|two|three|four|five|six|seven|eight|nine|ten| \
           eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen| \
           eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty| \
@@ -29,6 +30,8 @@ reg3 = re.compile(rel_day, re.IGNORECASE)
 reg4 = re.compile(iso)
 reg5 = re.compile(year)
 
+# Hash function for months to simplify the grounding task.
+# [Jan..Dec] -> [1..12]
 hashmonths = {
     'january': 1,
     'february': 2,
@@ -43,6 +46,7 @@ hashmonths = {
     'november': 11,
     'december': 12}
 
+# Hash number in words into the corresponding integer value
 def hashnum(number):
     if re.match(r'one|^a\b', number, re.IGNORECASE):
         return 1
@@ -133,17 +137,26 @@ def tag(text):
         text = re.sub(timex + '(?!</TIMEX2>)', '<TIMEX2>' + timex + '</TIMEX2>', text)
     return text
 
+# Given a timex_tagged_text and a Date object set to base_date,
+# returns timex_grounded_text
 def ground(tagged_text, base_date):
 
+    # Find all identified timex and put them into a list
     timex_regex = re.compile(r'<TIMEX2>.*?</TIMEX2>', re.DOTALL)
     timex_found = timex_regex.findall(tagged_text)
     timex_found = map(lambda timex:re.sub(r'</?TIMEX2.*?>', '', timex),timex_found)
 
+    # Calculate the new date accordingly
     for timex in timex_found:
+        # Default value
         timex_val = 'UNKNOWN' 
         timex_val_ori='UNKNOWN'
+        
+        # Backup original timex for later substitution
         timex_ori = timex 
-
+        
+        # If numbers are given in words, hash them into corresponding numbers.
+        # eg. twenty five days ago --> 25 days ago
         if re.search(numbers, timex, re.IGNORECASE):
             split_timex = re.split(r'\s(?=days?|months?|years?|weeks?)', \
                                                               timex, re.IGNORECASE)
@@ -352,10 +365,14 @@ def ground(tagged_text, base_date):
             offset = int(re.split(r'\s', timex)[0])
             timex_val = str(base_date.year + offset)
             timex_val_ori=timex_val
-
+        
+        # Remove 'time' from timex_val.
+        # For example, If timex_val = 2000-02-20 12:23:34.45, then
+        # timex_val = 2000-02-20
         timex_val = re.sub(r'\s.*', '', timex_val)
         timex_val_ori = re.sub(r'\s.*', '', timex_val_ori)
-
+        
+        # Substitute tag+timex in the text with grounded tag+timex.
         tagged_text = re.sub('<TIMEX2>' + timex_ori + '</TIMEX2>', '<TIMEX2 val=\"' \
             + timex_val + '\">' + timex_ori + '</TIMEX2>', tagged_text)
 

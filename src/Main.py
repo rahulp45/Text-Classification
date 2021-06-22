@@ -27,7 +27,8 @@ def customSynonym():
     SYNONYMS_FOR_KEYWORDS['meeting'].append('appointment')
     SYNONYMS_FOR_KEYWORDS['meeting'].append('visit')
     SYNONYMS_FOR_KEYWORDS['meeting'].append('call')
-    
+
+#perform spell correction
 def performSpellCorrection(featureObj):
     checker = SpellChecker("en_US", featureObj.getText())
     spell = Speller(lang='en')
@@ -37,6 +38,7 @@ def performSpellCorrection(featureObj):
     featureObj.getLexicalFeatures().setSpellCorrection(checker.get_text())
     return featureObj
 
+#get synonyms for given word
 def getSynonyms(word):
     lemmas = []
     synsets = wordnet.synsets(word)
@@ -45,6 +47,7 @@ def getSynonyms(word):
     return list(set(lemmas))
 
 def setupKeywords():
+     # get all synonyms for given keywords
     global SYNONYMS_FOR_KEYWORDS
     for word in KEYWORDS:
         SYNONYMS_FOR_KEYWORDS[word] = getSynonyms(word)
@@ -64,6 +67,7 @@ def getCommandLineArgs():
     return sys.argv[1], sys.argv[2]
 
 def preProcessData(input):
+    # read input file
     inputObjects = Utilities.parseInputFile(inputFileName)
     featureObjects = []
     for obj in inputObjects:
@@ -87,6 +91,7 @@ def performTagging(featureObjects):
             taggedLines.append(obj)
     return taggedLines
 
+#check whether event is past
 def isEventPast(obj):
     initialTokens = Utilities.split(obj.getText().lower(), " ")
     obj.getLexicalFeatures().setTokens(initialTokens)
@@ -104,6 +109,7 @@ def isEventPast(obj):
             return True
     return False
 
+#get location from stanford NER
 def parseLocation(obj):
     event = re.sub("<TIMEX2>|</TIMEX2>", "", obj.getLexicalFeatures().getSpellCorrection())
     entities = []
@@ -128,16 +134,22 @@ def setupEvent(obj, eventType):
     return Event(eventType, eventDate, obj.getDate(), eventLocation)
 
 if __name__ == '__main__':
+    #initialize variables
     initialize()
 
+    #read commmand line parameters
     inputFileName, outputFileName = getCommandLineArgs()
 
+    #preprocess input data
     featureObjects = preProcessData(inputFileName)
 
+    #perform temporal expression tagging
     taggedLines = performTagging(featureObjects)
-
+    
+    #select lines which have <TIMEX2> tag
     eventsList = Utilities.filter(taggedLines, TIMEX_TAG)
-
+    
+    #for lines identified as events, check each whether any word matches with synonyms for keywords
     for obj in eventsList:
         isRequired, eventType = isRequiredEvent(obj, SYNONYMS_FOR_KEYWORDS)
         
@@ -165,11 +177,14 @@ if __name__ == '__main__':
                     Utilities.writeLog("Event Detected but is identified as past event :" + obj.getText())
         else:
             Utilities.writeLog("Event Detected but event type did not match with required events :" + obj.getText())
-
+    
+    #write into output file
     for feature in RESULT:
         Utilities.writeOutput(outputFileName, feature)
     Utilities.writeOutput(outputFileName,"\n")
 
+    #count negatives
     Utilities.computeNegatives(featureObjects)
 
+    #print evaluation metrics
     Utilities.printMetrics()
