@@ -2,7 +2,7 @@ import nltk, sys, re
 from nltk.corpus import wordnet
 from enchant.checker import SpellChecker
 from autocorrect import Speller
-import timex,Utilities
+import Timex,Utilities
 from LexicalFeatures import LexicalFeatures
 from Event import Event
 from nltk.tag import StanfordNERTagger
@@ -28,7 +28,6 @@ def customSynonym():
     SYNONYMS_FOR_KEYWORDS['meeting'].append('visit')
     SYNONYMS_FOR_KEYWORDS['meeting'].append('call')
     
-
 def performSpellCorrection(featureObj):
     checker = SpellChecker("en_US", featureObj.getText())
     spell = Speller(lang='en')
@@ -36,7 +35,6 @@ def performSpellCorrection(featureObj):
         word.replace(spell(word.word))
     featureObj.text=checker.get_text()
     featureObj.getLexicalFeatures().setSpellCorrection(checker.get_text())
-   
     return featureObj
 
 def getSynonyms(word):
@@ -63,7 +61,6 @@ def getCommandLineArgs():
     if len(sys.argv) < 2:
         print("ERROR: Usage: Main.py <input> <output>")
         exit(1)
-
     return sys.argv[1], sys.argv[2]
 
 def preProcessData(input):
@@ -78,9 +75,9 @@ def performTagging(featureObjects):
     for obj in featureObjects:
         taggedLine = ""
         try:
-            taggedLine = timex.tag(obj.getLexicalFeatures().getSpellCorrection().lower())
+            taggedLine = Timex.tag(obj.getLexicalFeatures().getSpellCorrection().lower())
             date=datetime.today()
-            taggedLine,timex_val = timex.ground(taggedLine, date)
+            taggedLine,timex_val = Timex.ground(taggedLine, date)
         except:
             taggedLine = ""
 
@@ -88,9 +85,7 @@ def performTagging(featureObjects):
             obj.getSyntacticFeatures().setTemporalTag(Utilities.firstMatching(TIMEX_TAG_REGEX, taggedLine))
             obj.setDate(timex_val)
             taggedLines.append(obj)
-
     return taggedLines
-
 
 def isEventPast(obj):
     initialTokens = Utilities.split(obj.getText().lower(), " ")

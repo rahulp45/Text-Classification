@@ -45,7 +45,6 @@ def parseInputFile(inputFileName):
             feature = Features(line[0],line[1])
             #print(feature.actual)
             featureObjects.append(feature)
-            
     return featureObjects
 
 def setupLog():
@@ -59,7 +58,6 @@ def parseDate(line):
         r = re.compile(TIMEX_TAG_REGEX)
         dates = r.findall(line)
         return re.sub("<\/?TIMEX2([^<.]+)?>", "", dates[0])
-
     return ""
 
 def filter(taggedLines, searchString):
@@ -67,7 +65,6 @@ def filter(taggedLines, searchString):
     for taggedLine in taggedLines:
         if searchString in taggedLine.getSyntacticFeatures().getTemporalTag():
             events.append(taggedLine)
-
     return events
 
 def firstMatching(pattern, string):

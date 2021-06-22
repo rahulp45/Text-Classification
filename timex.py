@@ -106,11 +106,9 @@ def hashnum(number):
 def tag(text):
 
     timex_found = []
-
     found = reg1.findall(text)
-    #print(found)
     found = [a[0] for a in found if len(a) > 1]
-    #print(found)
+
     for timex in found:
         timex_found.append(timex)
 
@@ -130,28 +128,22 @@ def tag(text):
     found = reg5.findall(text)
     for timex in found:
         timex_found.append(timex)
-    #print(timex_found)
 
     for timex in timex_found:
         text = re.sub(timex + '(?!</TIMEX2>)', '<TIMEX2>' + timex + '</TIMEX2>', text)
-    #print(text)
-
     return text
 
 def ground(tagged_text, base_date):
 
     timex_regex = re.compile(r'<TIMEX2>.*?</TIMEX2>', re.DOTALL)
     timex_found = timex_regex.findall(tagged_text)
-    #print(timex)
     timex_found = map(lambda timex:re.sub(r'</?TIMEX2.*?>', '', timex),timex_found)
-    #print(timex_found)
 
     for timex in timex_found:
         timex_val = 'UNKNOWN' 
         timex_val_ori='UNKNOWN'
-
         timex_ori = timex 
-        #print(timex)
+
         if re.search(numbers, timex, re.IGNORECASE):
             split_timex = re.split(r'\s(?=days?|months?|years?|weeks?)', \
                                                               timex, re.IGNORECASE)
@@ -160,7 +152,6 @@ def ground(tagged_text, base_date):
             num_list = map(lambda s:hashnum(s),re.findall(numbers + '+', \
                                           value, re.IGNORECASE))
             timex = str(sum(num_list)) + ' ' + unit
-            #print(timex)
         
         month = ""
         if re.match(r'\d+[/-]\d+[/-]\d+ \d+:\d+:\d+\.\d+', timex):
@@ -168,7 +159,6 @@ def ground(tagged_text, base_date):
             dmy = re.split(r'/|-', dmy)
             timex_val = str(dmy[2]) + '-' + str(dmy[1]) + '-' + str(dmy[0])
             timex_val_ori=timex_val
-            #print(timex_val)
 
         elif re.match(r'\d{4}', timex):
             timex_val = str(timex)
@@ -188,7 +178,6 @@ def ground(tagged_text, base_date):
 
         elif re.match(r'last ' + week_day, timex, re.IGNORECASE):
             day=timex.split()[1]
-            #print(day)
             if day=="monday":
                 timex_val = str(base_date + relativedelta(weeks =-1,weekday=MO(0)))
             elif day=="tuesday":
@@ -282,8 +271,8 @@ def ground(tagged_text, base_date):
             timex_val_ori=timex_val
 
         elif re.match(r'this month', timex, re.IGNORECASE):
-                timex_val = str(base_date.year) + '-' + str(base_date.month)
-                timex_val_ori=timex_val
+            timex_val = str(base_date.year) + '-' + str(base_date.month)
+            timex_val_ori=timex_val
 
         elif re.match(r'next month', timex, re.IGNORECASE):
             if base_date.month == 12:
@@ -366,7 +355,6 @@ def ground(tagged_text, base_date):
 
         timex_val = re.sub(r'\s.*', '', timex_val)
         timex_val_ori = re.sub(r'\s.*', '', timex_val_ori)
-        #print(timex_val)
 
         tagged_text = re.sub('<TIMEX2>' + timex_ori + '</TIMEX2>', '<TIMEX2 val=\"' \
             + timex_val + '\">' + timex_ori + '</TIMEX2>', tagged_text)
