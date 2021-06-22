@@ -1,0 +1,207 @@
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Rahul will not be attending any meeting tomorrow
+
+Event:birthday
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Rahul's birthday party is planned tomorrow evening
+
+Event:seminar
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Do we have class tomorrow?
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location: delhi
+Text:Schedule an appointment for tomorrow in delhi
+
+Event:meeting
+When:next week
+Date:2021-26
+Location:none
+Text:Need to set up a follow-up call with the physician next week
+
+Event:seminar
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Lecture starts tomorrow
+
+Event:meeting
+When:next week
+Date:2021-26
+Location:none
+Text:Board meeting is scheduled next week
+
+Event:seminar
+When:next week
+Date:2021-26
+Location:none
+Text:There is a seminar next week
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Please gather in the auditorium tomorrow morning
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location: starbucks tomorrow evening?
+Text:Can we meet at starbucks tomorrow evening?
+
+Event:meeting
+When:today
+Date:2021-06-22
+Location:none
+Text:Will you be joining today's team meeting?
+
+Event:seminar
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:The lecture starts tomorrow morning in the Auditorium
+
+Event:birthday
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:I will be there for your son's birthday party tomorrow
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location: Dallas
+Text:Do you expect more guests for the get together tomorrow at Dallas
+
+Event:meeting
+When:yesterday
+Date:2021-06-21
+Location:none
+Text:Yesterday, he said he would attend the meeting, but he didnt
+
+Event:marriage
+When:next month
+Date:2021-7
+Location: San Francisco
+Text:I will definitely attend his marriage next month at San Francisco
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:I just got a text from office that there is a meeting scheduled tomorrow morning
+
+Event:marriage
+When:tomorrow
+Date:2021-06-23
+Location: Temple
+Text:My sister's marriage is happening tomorrow in Temple
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Are you available tomorrow for a short meeting?
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:My boss said we need to have a one to one meeting tomorrow
+
+Event:birthday
+When:next week
+Date:2021-26
+Location:none
+Text:I invite all of you for my son's birthday next week at my place
+
+Event:birthday
+When:today
+Date:2021-06-22
+Location:none
+Text:Will you attend my birthday party today?
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:There is a meeting scheduled tomorrow to discuss about recent happenings
+
+Event:meeting
+When:next monday
+Date:2021-07-05
+Location:none
+Text:We have a gathering at our place next monday
+
+Event:marriage
+When:next month
+Date:2021-7
+Location:none
+Text:Tom's wedding is happening next month
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:He is not going to attend the meeting tomorrow
+
+Event:birthday
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:He is not attending the birthday party tomorrow
+
+Event:birthday
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:He is not attending Tom's birthday party tomorrow
+
+Event:seminar
+When:next week
+Date:2021-26
+Location:none
+Text:He is not attending the lecture next week
+
+Event:seminar
+When:next month
+Date:2021-7
+Location:none
+Text:He is not attending the seminar next month
+
+Event:meeting
+When:next month
+Date:2021-7
+Location:none
+Text:What can we do if he doesn't attend the meeting next month
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Tomorrow's board meeting is cancelled
+
+Event:marriage
+When:next week
+Date:2021-26
+Location:none
+Text:Please dont come to my son's wedding next week
+
+Event:meeting
+When:tomorrow
+Date:2021-06-23
+Location:none
+Text:Annual meeting is cancelled tomorrow
+
+
+
+
