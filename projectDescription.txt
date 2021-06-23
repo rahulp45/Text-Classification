@@ -53,6 +53,7 @@ Event Format:
 
 Files Description:
 -----------------
+    - src folder contains all the code and related things
     - (.py) files are project files
     - sampleInput.csv and sampleOutput.txt are input and output files
         • Input is taken from online source and also made up sentences.
