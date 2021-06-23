@@ -19,7 +19,7 @@ Examples
         
     b) Syntactic Features -The lecture starts at 11.00 A.M in Auditorium
         output: [('The', 'DT'), ('lecture', 'NN'), ('starts', 'VBZ'), ('at', 'IN'), ('11.00', 'CD'), ('A.M', 'NNP'), ('in', 'IN'),
-        ('Auditorium', 'NNP')][with POS tag temporal tagging is done for date and time
+        ('Auditorium', 'NNP')][with POS tag temporal tagging is done for date and time]
         
     c) Semantic Features- The lecture starts at 11.00 A.M in Auditorium
         output: The Seminar starts at 11.00 A.M in Auditorium
