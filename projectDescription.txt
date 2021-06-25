@@ -1,6 +1,6 @@
 Description:
 -----------
-Identify events with date, time and location(if present) from text.Events extracted must be a future event with details of the event.
+Identify calender events with date, time and location(if present) from text.Events extracted must be a future event with details of the event.
 
 Proposed Solution and Implementation Details:
 --------------------------------------------
@@ -36,6 +36,7 @@ Modules and Tools:
 	- Syntactic pattern(remove events in past tense)
 	- Synonymy for 5 events
 	- Named entity recognition
+	- Result stored in database
     
 Workflow:
 --------
@@ -45,17 +46,20 @@ Workflow:
 
 O/P Format:
 -----------
-Event Format:
-    - EVENT_TYPE where EVENT_TYPE is of Marriage, Birthday party, Meeting, Anniversary, Seminar
-    - When(relative date of event)
-    - Date(absolute date of an event)
-    - Location(if present)
-
+Event Format: Output is stored in the database in the following format.
+    - PatientID
+    - Response:
+    	- EVENT_TYPE where EVENT_TYPE is of Marriage, Birthday party, Meeting, Anniversary, Seminar
+    	- When(relative date of event)
+    	- Date(absolute date of an event)
+    	- Location(if present)
+	- Actual Text
+	
 Files Description:
 -----------------
     - src folder contains all the code and related things
     - (.py) files are project files
-    - sampleInput.csv and sampleOutput.txt are input and output files
+    - sampleInput.csv is the input file
         • Input is taken from online source and also made up sentences.
     - EventDetector.log is a log file which records all the logs in program(if any)
     - Learning and exploring is a doc file which records the summary of overall things explored and learned (challanges and difficulties faced)
