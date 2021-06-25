@@ -4,7 +4,8 @@ from LexicalFeatures import LexicalFeatures
 
 class Features(object):
 
-    def __init__(self, text,actual):
+    def __init__(self, patientID, text, actual):
+        self.patientID=patientID
         self.text = text
         self.syntacticFeatures = SyntacticFeatures()
         self.lexicalFeatures = LexicalFeatures()
@@ -13,7 +14,10 @@ class Features(object):
         self.actual = actual
         self.predict = "no"
         self.Date=""
-
+    
+    def getPatientID(self):
+        return self.patientID
+    
     def setPredict(self, predict):
         self.predict = predict
 

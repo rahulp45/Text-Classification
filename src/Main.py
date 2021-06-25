@@ -2,7 +2,7 @@ import nltk, sys, re
 from nltk.corpus import wordnet
 from enchant.checker import SpellChecker
 from autocorrect import Speller
-import Timex,Utilities
+import Timex,Utilities,Database
 from LexicalFeatures import LexicalFeatures
 from Event import Event
 from nltk.tag import StanfordNERTagger
@@ -62,9 +62,9 @@ def isRequiredEvent(obj, dict):
 
 def getCommandLineArgs():
     if len(sys.argv) < 2:
-        print("ERROR: Usage: Main.py <input> <output>")
+        print("ERROR: Usage: Main.py <input>")
         exit(1)
-    return sys.argv[1], sys.argv[2]
+    return sys.argv[1]
 
 def preProcessData(input):
     # read input file
@@ -127,18 +127,19 @@ def parseLocation(obj):
     return result
 
 def setupEvent(obj, eventType):
+    patientID=obj.getPatientID()
     eventDate = Utilities.parseDate(obj.getSyntacticFeatures().getTemporalTag())
     eventLocation = parseLocation(obj)
     if(eventLocation==""):
         eventLocation="none"
-    return Event(eventType, eventDate, obj.getDate(), eventLocation)
+    return Event(patientID,eventType, eventDate, obj.getDate(), eventLocation)
 
 if __name__ == '__main__':
     #initialize variables
     initialize()
 
     #read commmand line parameters
-    inputFileName, outputFileName = getCommandLineArgs()
+    inputFileName = getCommandLineArgs()
 
     #preprocess input data
     featureObjects = preProcessData(inputFileName)
@@ -159,30 +160,30 @@ if __name__ == '__main__':
             if not isEventPast(obj):
                 Utilities.computePositives(obj)
                 obj.setPredict("yes")
-                RESULT.append(["Event:"+obj.getEvent().type,
-                                "When:"+ obj.getEvent().rel_date,
-                                "Date:"+obj.getEvent().abs_date,
-                                "Location:"+ obj.getEvent().location,
-                                 "Text:"+ obj.getText()])
+                RESULT.append([ obj.getEvent().patientID,
+                                obj.getEvent().type,
+                                obj.getEvent().rel_date,
+                                obj.getEvent().abs_date,
+                                obj.getEvent().location,
+                                obj.getText()])
             else:
                 if Utilities.isDateInFuture(obj.getSyntacticFeatures().getTemporalTag()):
                     obj.setPredict("yes")
                     Utilities.computePositives(obj)
-                    RESULT.append(["Event:"+ obj.getEvent().type,
-                                     "When:"+ obj.getEvent().rel_date,
-                                     "Date:"+ obj.getEvent().abs_date,
-                                     "Location:"+ obj.getEvent().location,
-                                     "Text:"+ obj.getText()])
+                    RESULT.append([ obj.getEvent().patientID,
+                                    obj.getEvent().type,
+                                    obj.getEvent().rel_date,
+                                    obj.getEvent().abs_date,
+                                    obj.getEvent().location,
+                                    obj.getText()])
                 else:
                     Utilities.writeLog("Event Detected but is identified as past event :" + obj.getText())
         else:
             Utilities.writeLog("Event Detected but event type did not match with required events :" + obj.getText())
+            
+    #insert into database      
+    Database.insert_into_database(RESULT)
     
-    #write into output file
-    for feature in RESULT:
-        Utilities.writeOutput(outputFileName, feature)
-    Utilities.writeOutput(outputFileName,"\n")
-
     #count negatives
     Utilities.computeNegatives(featureObjects)
 

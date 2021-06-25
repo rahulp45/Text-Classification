@@ -45,8 +45,7 @@ def parseInputFile(inputFileName):
     with open(inputFileName, 'r') as inputFile:
         csvFile = csv.reader(inputFile)
         for line in csvFile:
-            feature = Features(line[0],line[1])
-            #print(feature.actual)
+            feature = Features(line[0],line[1],line[2])
             featureObjects.append(feature)
     return featureObjects
 
@@ -113,15 +112,7 @@ def computeNegatives(featureObjects):
             FALSE_NEGATIVE += 1
         elif obj.getActual() == "no" and obj.getPredicted() == "no":
             TRUE_NEGATIVE += 1
-
-#write into output file            
-def writeOutput(outputFileName, row):
-    outputfile=open(outputFileName, 'a')
-    for details in row:
-        outputfile.write(details)
-        outputfile.write("\n")
-    outputfile.write("\n")
-
+            
 #compute evaluation measures    
 def computeMeasures():
     global Precision,Recall,F1_Score,Accuracy
