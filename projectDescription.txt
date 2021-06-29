@@ -59,6 +59,7 @@ Event Format: Output is stored in the database in the following format.
 O/P Access:
 -----------
 Output can be accesses through the API calls.
+	- Flask is used to handle the requests and show the results
 	- {localhost}/allPatients:It will retrieve all responses for all the patients
 	- {localhost}/patientResponse/PatientID:It will retrieve all responses for the particular patient
 	
