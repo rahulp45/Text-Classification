@@ -21,9 +21,9 @@ Input Data Format:
 -------------------------
 - Import the attached .csv file on MongoDB with DB name "sampleInput" and collection name "Details"
 - Format:
-      • PatientID
-      • Text
-      • Actual class label("YES" or "NO")
+    • PatientID
+    • Text
+    • Actual class label("YES" or "NO")
  
 Output Format:
 -------------------------
