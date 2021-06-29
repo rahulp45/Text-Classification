@@ -2,7 +2,7 @@ import nltk, sys, re
 from nltk.corpus import wordnet
 from enchant.checker import SpellChecker
 from autocorrect import Speller
-import Timex,Utilities,Database
+import Timex,Utilities,ImportInput,ExportOutput,app
 from LexicalFeatures import LexicalFeatures
 from Event import Event
 from nltk.tag import StanfordNERTagger
@@ -66,9 +66,9 @@ def getCommandLineArgs():
         exit(1)
     return sys.argv[1]
 
-def preProcessData(input):
-    # read input file
-    inputObjects = Utilities.parseInputFile(inputFileName)
+def preProcessData():
+    # import input from db
+    inputObjects = ImportInput.parseInput()
     featureObjects = []
     for obj in inputObjects:
         featureObjects.append(performSpellCorrection(obj))
@@ -138,11 +138,8 @@ if __name__ == '__main__':
     #initialize variables
     initialize()
 
-    #read commmand line parameters
-    inputFileName = getCommandLineArgs()
-
     #preprocess input data
-    featureObjects = preProcessData(inputFileName)
+    featureObjects = preProcessData()
 
     #perform temporal expression tagging
     taggedLines = performTagging(featureObjects)
@@ -182,10 +179,13 @@ if __name__ == '__main__':
             Utilities.writeLog("Event Detected but event type did not match with required events :" + obj.getText())
             
     #insert into database      
-    Database.insert_into_database(RESULT)
+    ExportOutput.insert_into_database(RESULT)
     
     #count negatives
     Utilities.computeNegatives(featureObjects)
 
     #print evaluation metrics
     Utilities.printMetrics()
+
+    app.main()
+ 

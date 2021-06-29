@@ -28,27 +28,6 @@ def split(sentence, delimiter):
 def isEmpty(string):
     return string == '' or string == None
 
-def parseInputFileText(inputFileName):
-    inputString = ""
-    with open(inputFileName, 'r') as inputFile:
-        for line in inputFile:
-            inputString = "{}{}".format(inputString, line.strip())
-    return inputString
-
-def incrementTP():
-    global TRUE_POSITIVE
-    TRUE_POSITIVE += 1
-
-#parse input file - read all the input lines
-def parseInputFile(inputFileName):
-    featureObjects = []
-    with open(inputFileName, 'r') as inputFile:
-        csvFile = csv.reader(inputFile)
-        for line in csvFile:
-            feature = Features(line[0],line[1],line[2])
-            featureObjects.append(feature)
-    return featureObjects
-
 def setupLog():
     logging.basicConfig(level=logging.DEBUG,
         format='%(asctime)s %(levelname)s %(message)s',
