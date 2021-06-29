@@ -75,8 +75,7 @@ Files Description:
 Note:
 -----
     - Identify event for each line (not multiple lines at once).
-    - The model will itself evaluate the precision, recall, accuracy, f1-score and print it that is why 'yes' or 'no' appended after every sentence
-      (To give the class label to each sentence)
+    - The model will itself evaluate the precision, recall, accuracy, f1-score
 
 
 #############################################################################
