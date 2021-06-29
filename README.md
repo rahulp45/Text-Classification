@@ -15,8 +15,11 @@ Pre-requisites:
         • Under the Heading Download see NER verion 4.2.0
     - Make sure to include the path of NER
 - Mongodb installed(Latest Version)
-- pip install Flask 
-
+- Flask app installs
+    • pip install Flask
+    • pip install Flask-PyMongo
+    • pip install pymongo
+    
 Input Data Format:
 -------------------------
 - Import the attached .csv file on MongoDB with DB name "sampleInput" and collection name "Details"
