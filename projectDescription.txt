@@ -55,6 +55,12 @@ Event Format: Output is stored in the database in the following format.
     	- Date(absolute date of an event)
     	- Location(if present)
 	- Actual Text
+
+O/P Access:
+-----------
+Output can be accesses through the API calls.
+	- {localhost}/allPatients:It will retrieve all responses for all the patients
+	- {localhost}/patientResponse/PatientID:It will retrieve all responses for the particular patient
 	
 Files Description:
 -----------------
