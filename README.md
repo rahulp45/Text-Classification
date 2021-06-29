@@ -2,7 +2,7 @@
 Identify calender events with date,time and location(if present) from text.
 
  ## **NLP Modules** ##
-* NLTK – WordNet, Spell correction, Timex, Named Entity Recognition, DateTime, Calender
+* NLTK – WordNet, Spell correction, Named Entity Recognition, DateTime, Calender 
 
 Pre-requisites:
 -------------------
@@ -14,13 +14,17 @@ Pre-requisites:
     - Download zip file for NER from https://nlp.stanford.edu/software/CRF-NER.html
         • Under the Heading Download see NER verion 4.2.0
     - Make sure to include the path of NER
-- Mongodb installed
+- Mongodb installed(Latest Version)
+- pip install Flask 
 
 Input Data Format:
 -------------------------
-- A CSV file whose sentences labeled as 'yes' or 'no' after every sentence with patientID in th start
-(see sampleInput.csv)
+- Import the attached .csv file on MongoDB with DB name "sampleInput" and collection name "Details"
+
+Output Format:
+-------------------------
+- Output will be stored in the database named "Actions" with collection name "Events"
 
 How to run:
 ---------------
-python main.py inputfilename
+python Main.py
