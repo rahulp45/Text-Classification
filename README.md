@@ -16,9 +16,9 @@ Pre-requisites:
     - Make sure to include the path of NER
 - Mongodb installed(Latest Version)
 - Flask app installs
-    • pip install Flask
-    • pip install Flask-PyMongo
-    • pip install pymongo
+    - pip install Flask
+    - pip install Flask-PyMongo
+    - pip install pymongo
     
 Input Data Format:
 -------------------------
