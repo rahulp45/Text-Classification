@@ -20,7 +20,11 @@ Pre-requisites:
 Input Data Format:
 -------------------------
 - Import the attached .csv file on MongoDB with DB name "sampleInput" and collection name "Details"
-
+- Format:
+      • PatientID
+      • Text
+      • Actual class label("YES" or "NO")
+ 
 Output Format:
 -------------------------
 - Output will be stored in the database named "Actions" with collection name "Events"
