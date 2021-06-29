@@ -2,7 +2,7 @@ import nltk, sys, re
 from nltk.corpus import wordnet
 from enchant.checker import SpellChecker
 from autocorrect import Speller
-import Timex,Utilities,ImportInput,ExportOutput,app
+import Timex,Utilities,ImportInput,ExportOutput,Requests
 from LexicalFeatures import LexicalFeatures
 from Event import Event
 from nltk.tag import StanfordNERTagger
@@ -186,6 +186,7 @@ if __name__ == '__main__':
 
     #print evaluation metrics
     Utilities.printMetrics()
-
-    app.main()
+    
+    #run flask app for request handling
+    Requests.main()
  
