@@ -36,4 +36,4 @@ How to run:
 ---------------
 python Main.py
 
-Note: See projectDescription.txt for in depth exploring
+Note: See projectDescription.txt for in depth understanding
