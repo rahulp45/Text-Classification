@@ -13,9 +13,10 @@ def notes():
     resp = dumps(notes)
     return resp
 
-@app.route('/getNotesByUserID/<id>')
-def getNotesByUserID(id):
-    patientResp = mongo1.db.Events.find_one({"patientID":id})
+@app.route('/getNotesByUserID')
+def getNotesByUserID():
+    patientID = request.args.get('PatientID')
+    patientResp = mongo1.db.Events.find_one({"PatientID":patientID})
     resp = dumps(patientResp)
     return resp
 
@@ -27,6 +28,7 @@ def setNotesByUserID():
     actual = _json['Actual']
 
     mongo2.db.Details.insert({"PatientID":patientID,"Text":text,"Actual":actual})
+
     resp = jsonify("Added Successfully")
     resp.status_code = 200
     return resp

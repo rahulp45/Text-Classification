@@ -7,8 +7,8 @@ collection = db.get_collection("Events")
 
 def insert_into_database(ResultObj):
     for feature in ResultObj:
-        if(db.Events.find({"patientID":feature[0]}).count()>0):
-            db.Events.update({"patientID":feature[0]},
+        if(db.Events.find({"PatientID":feature[0]}).count()>0):
+            db.Events.update({"PatientID":feature[0]},
                              {"$push":{"Response":
                                  {
                                     "Event":feature[1],
@@ -19,7 +19,7 @@ def insert_into_database(ResultObj):
                                  }
                              }})
         else:
-            document={"patientID":feature[0],
+            document={"PatientID":feature[0],
                        "Response":[
                                 {
                                     "Event":feature[1],
