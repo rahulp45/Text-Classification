@@ -1,12 +1,13 @@
-2021-06-29 13:15:02,179 WARNING Event Detected but event type did not match with required events :Rahul is getting married next year
-2021-06-29 13:15:03,664 WARNING Event Detected but event type did not match with required events :He will not go to movie tomorrow
-2021-06-29 13:15:11,186 WARNING Event Detected but is identified as past event :His wedding Anniversary was last month
-2021-06-29 13:15:11,186 WARNING Event Detected but event type did not match with required events :Homework is due tomorrow
-2021-06-29 13:15:20,228 WARNING Event Detected but event type did not match with required events :Hitler committed suicide in 1945
-2021-06-29 13:15:20,228 WARNING Event Detected but event type did not match with required events :John got married in 1988
-2021-06-29 13:15:23,492 WARNING Event Detected but event type did not match with required events :He is planning to participate in marathon next year
-2021-06-29 13:15:23,493 WARNING Event Detected but event type did not match with required events :No new movies are released tomorrow
-2021-06-29 13:15:26,493 WARNING Event Detected but is identified as past event :More people attended Tom's Anniversary last week
-2021-06-29 13:15:56,081 INFO  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-2021-06-29 13:16:01,889 INFO 127.0.0.1 - - [29/Jun/2021 13:16:01] "GET /patientResponse/1 HTTP/1.1" 200 -
-2021-06-29 13:16:15,980 INFO 127.0.0.1 - - [29/Jun/2021 13:16:15] "GET /allPatients HTTP/1.1" 200 -
+2021-06-30 12:13:47,843 WARNING Event Detected but event type did not match with required events :Rahul is getting married next year
+2021-06-30 12:13:49,299 WARNING Event Detected but event type did not match with required events :He will not go to movie tomorrow
+2021-06-30 12:13:56,437 WARNING Event Detected but is identified as past event :His wedding Anniversary was last month
+2021-06-30 12:13:56,437 WARNING Event Detected but event type did not match with required events :Homework is due tomorrow
+2021-06-30 12:14:04,613 WARNING Event Detected but event type did not match with required events :Hitler committed suicide in 1945
+2021-06-30 12:14:04,613 WARNING Event Detected but event type did not match with required events :John got married in 1988
+2021-06-30 12:14:07,542 WARNING Event Detected but event type did not match with required events :He is planning to participate in marathon next year
+2021-06-30 12:14:07,542 WARNING Event Detected but event type did not match with required events :No new movies are released tomorrow
+2021-06-30 12:14:10,311 WARNING Event Detected but is identified as past event :More people attended Tom's Anniversary last week
+2021-06-30 12:14:40,274 INFO  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-06-30 12:14:47,848 INFO 127.0.0.1 - - [30/Jun/2021 12:14:47] "GET /notes HTTP/1.1" 200 -
+2021-06-30 12:15:16,418 INFO 127.0.0.1 - - [30/Jun/2021 12:15:16] "GET /getNotesByUserID/1 HTTP/1.1" 200 -
+2021-06-30 12:15:24,192 INFO 127.0.0.1 - - [30/Jun/2021 12:15:24] "GET /getNotesByUserID/54 HTTP/1.1" 200 -

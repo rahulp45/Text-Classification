@@ -2,12 +2,14 @@ import nltk, sys, re
 from nltk.corpus import wordnet
 from enchant.checker import SpellChecker
 from autocorrect import Speller
-import Timex,Utilities,ImportInput,ExportOutput,Requests
-from LexicalFeatures import LexicalFeatures
-from Event import Event
 from nltk.tag import StanfordNERTagger
-from Features import Features
 from datetime import *
+from db_migrations import ExportOutput, ImportInput
+from handler import Timex, Utilities, Requests
+from helper.Features import Features
+from helper.LexicalFeatures import LexicalFeatures
+from helper.Event import Event
+
 
 KEYWORDS = ['marriage', 'birthday', 'meeting', 'anniversary', 'seminar']
 SYNONYMS_FOR_KEYWORDS = {}
@@ -59,12 +61,6 @@ def isRequiredEvent(obj, dict):
                 obj.getSemanticFeatures().setSynonym(str(dict[word]))
                 return True, word
     return False, ""
-
-def getCommandLineArgs():
-    if len(sys.argv) < 2:
-        print("ERROR: Usage: Main.py <input>")
-        exit(1)
-    return sys.argv[1]
 
 def preProcessData():
     # import input from db

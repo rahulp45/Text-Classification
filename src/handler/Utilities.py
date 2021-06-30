@@ -1,7 +1,7 @@
 from datetime import datetime
 import logging, random, copy, re, csv
 import logging.config
-from Features import Features
+from helper.Features import Features
 
 #global variables for evaluation
 TRUE_POSITIVE = 0.0

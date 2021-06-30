@@ -1,9 +1,9 @@
 from pymongo import MongoClient
 
-connection_string="mongodb://localhost:27017/Actions"
-client=MongoClient(connection_string)
-db=client.get_database("Actions")
-collection=db.get_collection("Events")
+connection_string = "mongodb://localhost:27017/Actions"
+client = MongoClient(connection_string)
+db = client.get_database("Actions")
+collection = db.get_collection("Events")
 
 def insert_into_database(ResultObj):
     for feature in ResultObj:

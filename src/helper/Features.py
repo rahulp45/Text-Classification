@@ -1,6 +1,6 @@
-from SyntacticFeatures import SyntacticFeatures
-from SemanticFeatures import SemanticFeatures
-from LexicalFeatures import LexicalFeatures
+from helper.SyntacticFeatures import SyntacticFeatures
+from helper.SemanticFeatures import SemanticFeatures
+from helper.LexicalFeatures import LexicalFeatures
 
 class Features(object):
 

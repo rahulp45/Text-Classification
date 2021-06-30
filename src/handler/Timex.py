@@ -1,10 +1,6 @@
-import re
-import string
-import os
-import sys
+import re, string, os, sys, calendar
 import pandas as pd
 from datetime import *; from dateutil.relativedelta import *
-import calendar
 
 # Predefined strings.
 numbers = "(^a(?=\s)|one|two|three|four|five|six|seven|eight|nine|ten| \
@@ -171,23 +167,23 @@ def ground(tagged_text, base_date):
             dmy = re.split(r'\s', timex)[0]
             dmy = re.split(r'/|-', dmy)
             timex_val = str(dmy[2]) + '-' + str(dmy[1]) + '-' + str(dmy[0])
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'\d{4}', timex):
             timex_val = str(timex)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
             
         elif re.match(r'tonight|tonite|today', timex, re.IGNORECASE):
             timex_val = str(base_date)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
  
         elif re.match(r'yesterday', timex, re.IGNORECASE):
             timex_val = str(base_date + relativedelta(days=-1))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
    
         elif re.match(r'tomorrow', timex, re.IGNORECASE):
             timex_val = str(base_date + relativedelta(days=+1))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'last ' + week_day, timex, re.IGNORECASE):
             day=timex.split()[1]
@@ -205,7 +201,7 @@ def ground(tagged_text, base_date):
                 timex_val = str(base_date + relativedelta(weeks =-1,weekday=SA(0)))
             elif day=="sunday":
                 timex_val = str(base_date + relativedelta(weeks =-1,weekday=SU(0)))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
        
         elif re.match(r'this ' + week_day, timex, re.IGNORECASE):
             day=timex.split()[1]
@@ -223,7 +219,7 @@ def ground(tagged_text, base_date):
                 timex_val = str(base_date + relativedelta(weeks =0,weekday=SA(0)))
             elif day=="sunday":
                 timex_val = str(base_date + relativedelta(weeks =0,weekday=SU(0)))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'next ' + week_day, timex, re.IGNORECASE):
             day=timex.split()[1]
@@ -241,96 +237,95 @@ def ground(tagged_text, base_date):
                 timex_val = str(base_date + relativedelta(weeks =+1,weekday=SA(0)))
             elif day=="sunday":
                 timex_val = str(base_date + relativedelta(weeks =+1,weekday=SU(0)))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'last week', timex, re.IGNORECASE):
             year = (base_date + relativedelta(weeks=-1)).year
             week = (base_date + relativedelta(weeks=-1)).isocalendar()[1]
             timex_val = str(year) + 'W' + str(week)
-            timex_val_ori=str(year)+'-'+str(week)
-            
+            timex_val_ori = str(base_date + relativedelta(weeks=-1))
+              
         elif re.match(r'this week', timex, re.IGNORECASE):
             year = (base_date + relativedelta(weeks=0)).year
             week = (base_date + relativedelta(weeks=0)).isocalendar()[1]
             timex_val = str(year) + 'W' + str(week)
-            timex_val_ori=str(year)+'-'+str(week)
-            
+            timex_val_ori = str(base_date + relativedelta(weeks=0))
+    
         elif re.match(r'next week', timex, re.IGNORECASE):
             year = (base_date + relativedelta(weeks=+1)).year
             week = (base_date + relativedelta(weeks=+1)).isocalendar()[1]
             timex_val = str(year) + 'W' + str(week)
-            timex_val_ori=str(year)+'-'+str(week)
-      
+            timex_val_ori = str(base_date + relativedelta(weeks=+1))
+            
         elif re.match(r'last ' + months, timex, re.IGNORECASE):
             month = hashmonths[timex.split()[1]]
             timex_val = str(base_date.year - 1) + '-' + str(month)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'this ' + months, timex, re.IGNORECASE):
             month = hashmonths[timex.split()[1]]
             timex_val = str(base_date.year) + '-' + str(month)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'next ' + months, timex, re.IGNORECASE):
             month = hashmonths[timex.split()[1]]
             timex_val = str(base_date.year + 1) + '-' + str(month)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
             
         elif re.match(r'last month', timex, re.IGNORECASE):
             if base_date.month == 1:
                 timex_val = str(base_date.year - 1) + '-' + '12'
             else:
                 timex_val = str(base_date.year) + '-' + str(base_date.month - 1)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'this month', timex, re.IGNORECASE):
             timex_val = str(base_date.year) + '-' + str(base_date.month)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'next month', timex, re.IGNORECASE):
             if base_date.month == 12:
                 timex_val = str(base_date.year + 1) + '-' + '1'
             else:
                 timex_val = str(base_date.year) + '-' + str(base_date.month + 1)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'last year', timex, re.IGNORECASE):
             timex_val = str(base_date.year - 1)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'this year', timex, re.IGNORECASE):
             timex_val = str(base_date.year)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'next year', timex, re.IGNORECASE):
             timex_val = str(base_date.year + 1)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
             
         elif re.match(r'\d+ days? (ago|earlier|before)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             timex_val = str(base_date + relativedelta(days=-offset))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
            
         elif re.match(r'\d+ days? (later|after)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             timex_val = str(base_date + relativedelta(days=+offset))
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
             
         elif re.match(r'\d+ weeks? (ago|earlier|before)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             year = (base_date + relativedelta(weeks=-offset)).year
-            week = (base_date + \
-                            relativedelta(weeks=-offset)).isocalendar()[1]
+            week = (base_date + relativedelta(weeks=-offset)).isocalendar()[1]
             timex_val = str(year) + 'W' + str(week)
-            timex_val_ori=str(year)+'-'+str(week)
-            
+            timex_val_ori = str(base_date + relativedelta(weeks=-offset))
+                
         elif re.match(r'\d+ weeks? (later|after)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             year = (base_date + relativedelta(weeks=+offset)).year
             week = (base_date + relativedelta(weeks=+offset)).isocalendar()[1]
             timex_val = str(year) + 'W' + str(week)
-            timex_val_ori=str(year)+'-'+str(week)
-            
+            timex_val_ori = str(base_date + relativedelta(weeks=+offset))
+               
         elif re.match(r'\d+ months? (ago|earlier|before)', timex, re.IGNORECASE):
             extra = 0
             offset = int(re.split(r'\s', timex)[0])
@@ -342,7 +337,7 @@ def ground(tagged_text, base_date):
             if month == '0':
                 month = '12'
             timex_val = year + '-' + month
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'\d+ months? (later|after)', timex, re.IGNORECASE):
             extra = 0
@@ -354,21 +349,21 @@ def ground(tagged_text, base_date):
             if month == '0':
                 month = '12'
             timex_val = year + '-' + month
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'\d+ years? (ago|earlier|before)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             timex_val = str(base_date.year - offset)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
 
         elif re.match(r'\d+ years? (later|after)', timex, re.IGNORECASE):
             offset = int(re.split(r'\s', timex)[0])
             timex_val = str(base_date.year + offset)
-            timex_val_ori=timex_val
+            timex_val_ori = timex_val
         
         # Remove 'time' from timex_val.
-        # For example, If timex_val = 2000-02-20 12:23:34.45, then
-        # timex_val = 2000-02-20
+        # For example, If timex_val = 2021-06-14 12:23:34.45, then
+        # timex_val = 2021-06-14
         timex_val = re.sub(r'\s.*', '', timex_val)
         timex_val_ori = re.sub(r'\s.*', '', timex_val_ori)
         

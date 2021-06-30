@@ -7,14 +7,14 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Actions"
 mongo = PyMongo(app)
 
-@app.route('/allPatients')
-def allPatients():
-    allPatients = mongo.db.Events.find()
-    All = dumps(allPatients)
-    return All
+@app.route('/notes')
+def notes():
+    notes = mongo.db.Events.find()
+    resp = dumps(notes)
+    return resp
 
-@app.route('/patientResponse/<id>')
-def response(id):
+@app.route('/getNotesByUserID/<id>')
+def getNotesByUserID(id):
     patientResp = mongo.db.Events.find_one({"patientID":id})
     resp = dumps(patientResp)
     return resp
