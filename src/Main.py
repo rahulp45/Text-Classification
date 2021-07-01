@@ -128,7 +128,7 @@ def setupEvent(obj, eventType):
     eventLocation = parseLocation(obj)
     if(eventLocation==""):
         eventLocation="none"
-    return Event(patientID,eventType, eventDate, obj.getDate(), eventLocation)
+    return Event(patientID, eventType, eventDate, obj.getDate(), eventLocation)
 
 if __name__ == '__main__':
     #initialize variables

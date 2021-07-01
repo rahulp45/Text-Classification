@@ -7,21 +7,21 @@ app = Flask(__name__)
 mongo1 = PyMongo(app, uri = 'mongodb://localhost:27017/Actions')
 mongo2 = PyMongo(app, uri = 'mongodb://localhost:27017/sampleInput')
 
-@app.route('/notes')
-def notes():
+@app.route('/getNotes')
+def getNotes():
     notes = mongo1.db.Events.find()
     resp = dumps(notes)
     return resp
 
-@app.route('/getNotesByUserID')
-def getNotesByUserID():
+@app.route('/getNotesByPatientID')
+def getNotesByPatientID():
     patientID = request.args.get('PatientID')
     patientResp = mongo1.db.Events.find_one({"PatientID":patientID})
     resp = dumps(patientResp)
     return resp
 
-@app.route('/setNotesByUserID/',methods=['POST'])
-def setNotesByUserID():
+@app.route('/setNotesByPatientID/',methods=['POST'])
+def setNotesByPatientID():
     _json = request.json
     patientID = _json['PatientID']
     text = _json['Text']
