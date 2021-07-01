@@ -60,9 +60,9 @@ O/P Access:
 -----------
 Output can be accesses through the API calls.Input and Output DBs both are configured in the Flask app.
 	- Flask is used to handle the requests and show the results
-	- {localhost}/notes:It will retrieve all responses for all the patients
-	- {localhost}/getNotesByUserID?PatientID:It will retrieve all responses for the particular patient
-	- [POST] {localhost}/setNotesByUserID:It will insert new data into input DB via POST request
+	- {localhost}/getNotes:It will retrieve all responses for all the patients
+	- {localhost}/getNotesByPatientID?PatientID:It will retrieve all responses for the particular patient
+	- [POST] {localhost}/setNotesByPatientID:It will insert new data into input DB via POST request
 	
 Files and Folder Description:
 -----------------
