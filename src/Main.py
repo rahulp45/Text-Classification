@@ -123,7 +123,7 @@ def parseLocation(obj):
     return result
 
 def setupEvent(obj, eventType):
-    patientID=obj.getPatientID()
+    patientID = obj.getPatientID()
     eventDate = Utilities.parseDate(obj.getSyntacticFeatures().getTemporalTag())
     eventLocation = parseLocation(obj)
     if(eventLocation==""):
